@@ -44,6 +44,7 @@ const SetBlock = (props) => {
               setdateValue(newValue);
             }}
             renderInput={(params) => <TextField {...params} />}
+            inputFormat="yyyy/MM/dd hh:mm a"
           /> */}
           <DesktopDateTimePicker
             value={dateValue}
@@ -51,6 +52,7 @@ const SetBlock = (props) => {
               setdateValue(newValue);
             }}
             renderInput={(params) => <TextField {...params} />}
+            inputFormat="yyyy/MM/dd hh:mm a"
           />
         </LocalizationProvider>
       </div>
