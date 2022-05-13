@@ -1,19 +1,18 @@
-import {useState} from "react"
+import { useState } from "react";
 import { Button, Divider, Typography, TextField, Stack } from "@mui/material";
-import {AdapterDateFns} from "@mui/x-date-pickers/AdapterDateFns";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import {
   LocalizationProvider,
   MobileDateTimePicker,
   DesktopDateTimePicker,
 } from "@mui/x-date-pickers";
-import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
-import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 import "./SetBlock.scss";
 
 const SetBlock = (props) => {
   const [dateValue, setdateValue] = useState(new Date());
-
 
   return (
     <div>
@@ -56,8 +55,11 @@ const SetBlock = (props) => {
           />
         </LocalizationProvider>
       </div>
-      <Divider sx={{marginTop:"8px"}}/>
+      <Divider sx={{ marginTop: "8px" }} />
 
+      <div className="query-btn">
+        <Button variant="contained">查詢</Button>
+      </div>
     </div>
   );
 };

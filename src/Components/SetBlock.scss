@@ -1,6 +1,7 @@
-.from-to-station{
+.from-to-station, .date-selector, .query-btn{
   display: flex;
   justify-content: center;
+  margin-top: 2em;
 }
 
 .start-label,
@@ -17,8 +18,4 @@ label {
 .arrow-btn {
   color: black !important;
   margin-top: 20px !important;
-}
-
-.date-selector{
-  margin-top: 2em;
 }
