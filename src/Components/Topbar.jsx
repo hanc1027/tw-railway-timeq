@@ -7,14 +7,14 @@ import Container from "@mui/material/Container";
 const ResponsiveAppBar = () => {
 
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{height:"48px"}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ mr: 2 }}
+            sx={{ mr: 2, height:"48px" }}
           >
             台鐵時刻查詢
           </Typography>

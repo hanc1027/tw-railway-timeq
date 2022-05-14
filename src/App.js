@@ -1,6 +1,8 @@
 import Topbar from './Components/Topbar'
 import SetBlock from './Components/SetBlock';
 import ResultBlock from './Components/ResultBlock';
+import MobileSetBlock from './Components/Mobile/SetBlock';
+
 
 import useRWD from './hooks/useRWD'
 
@@ -8,26 +10,27 @@ import './App.scss';
 
 function App() {
 
-  const device=useRWD();
+  const device = useRWD();
 
-    if(device==="desktop")
-      return(  <h1 style={{color:"#354458",fontFamily:"Microsoft JhengHei"}}>{device}電腦</h1>  );
-    else if(device==="tablet")
-      return(  <h1 style={{color:"#3a9ad9",fontFamily:"Microsoft JhengHei"}}>{device}平板</h1>  );
-    else
-      return(  <h1 style={{color:"#29aba4",fontFamily:"Microsoft JhengHei"}}>{device}手機</h1>  );
+  if (device === "desktop")
+    return (<div className="desktop-body">
+      <Topbar />
 
+      <div className="desktop-content">
+        <SetBlock />
+        <ResultBlock />
+      </div>
 
-  // return (
-  //   <div className="App">
-  //     <Topbar />
+    </div>);
+  else // tablet & mobile
+    return (<div className="mobile-body">
+      <Topbar />
 
-  //     <div className="content">
-  //       <SetBlock />
-  //       <ResultBlock />
-  //     </div>
-  //   </div>
-  // );
+      <div className="mobile-content">
+        <MobileSetBlock />
+      </div>
+    </div>);
+
 }
 
 export default App;
