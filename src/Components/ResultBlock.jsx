@@ -14,7 +14,7 @@ const ResultBlock = (props) => {
 
   return (
     <Box sx={{ flexGrow: 1, borderRadius: 2 }} className="main">
-      {selectMode.mode === "selectCity" && <SelectCity />}
+      {selectMode.mode === "selectCity" && <SelectCity stations={cityStations}/>}
     </Box>
   );
 };

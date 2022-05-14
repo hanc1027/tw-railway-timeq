@@ -15,12 +15,12 @@ const filterStationsFromCity = (rawStations, city) => {
     rawStations.forEach(item => {
         let address = deleteNum(item.StationAddress)
 
-        if(city === "雙北"){
-            if(address.startsWith("臺北") || address.startsWith("新北") ){
+        if (city === "雙北") {
+            if (address.startsWith("臺北") || address.startsWith("新北")) {
                 result.push(item.StationName.Zh_tw)
             }
         }
-        else if(address.startsWith(city)){
+        else if (address.startsWith(city)) {
             result.push(item.StationName.Zh_tw)
         }
     })
@@ -32,20 +32,12 @@ const useGetCityStation = () => {
     const stations = stationsDetail.Stations
     const [cityStations, setcityStations] = useState([]);
 
-    const handleStations = () => {
-        cities.forEach(city => {
-            cityStations.push({
-                city: city,
-                stationName: filterStationsFromCity(stations, city)
-            })
+    cities.forEach(city => {
+        cityStations.push({
+            city: city,
+            stationName: filterStationsFromCity(stations, city)
         })
-    }
-
-    useEffect(() => {
-        handleStations();
-
-        // using null array means componentDidMount (This function will be call at first)
-    }, []);
+    })
 
     return cityStations;
 }
