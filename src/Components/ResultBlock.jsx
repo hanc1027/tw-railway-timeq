@@ -1,5 +1,6 @@
 import Box from "@mui/material/Box";
 import SelectCity from "./ResultBlockTools/SelectCity";
+import StartPage from "./ResultBlockTools/StartPage";
 
 // redux
 import { useSelector } from "react-redux";
@@ -14,6 +15,7 @@ const ResultBlock = (props) => {
 
   return (
     <Box sx={{ flexGrow: 1, borderRadius: 2 }} className="main">
+       {selectMode.mode === "" && <StartPage/>}
       {selectMode.mode === "selectCity" && <SelectCity stations={cityStations}/>}
     </Box>
   );

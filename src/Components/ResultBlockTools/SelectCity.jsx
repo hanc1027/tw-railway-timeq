@@ -1,10 +1,13 @@
 import Grid from "@mui/material/Grid";
 import Button from "@mui/material/Button";
 
-import { useSelector } from "react-redux";
+// redux
+import { useSelector, useDispatch } from "react-redux";
+import { modeHandler } from "../../store/mainSlice";
 
 const SelectCity = (props) => {
   const startOrEnd = useSelector((state) => state.main.selectMode.startOrEnd);
+  const dispatch = useDispatch();
 
   return (
     <Grid container height="100%">
@@ -45,7 +48,9 @@ const SelectCity = (props) => {
         display="flex"
         sx={{ margin: 2 , marginBottom: 0}}
       >
-        <Button color="error">取消</Button>
+        <Button color="error" onClick={()=>{
+          dispatch(modeHandler({ mode: "", startOrEnd: ""}));
+        }}>取消</Button>
       </Grid>
     </Grid>
   );
