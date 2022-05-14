@@ -11,6 +11,7 @@ const SelectCity = (props) => {
       <Grid
         item
         md={12}
+        xs={12}
         justifyContent="center"
         display="flex"
         sx={{ margin: 2 }}
@@ -25,6 +26,7 @@ const SelectCity = (props) => {
             <Grid
               item
               md={3}
+              xs={3}
               key={station + index}
               justifyContent="center"
               display="flex"
@@ -38,6 +40,7 @@ const SelectCity = (props) => {
       <Grid
         item
         md={12}
+        xs={12}
         justifyContent="center"
         display="flex"
         sx={{ margin: 2 , marginBottom: 0}}
