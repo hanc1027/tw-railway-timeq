@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Button, Divider, Typography, TextField } from "@mui/material";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import {
@@ -7,6 +6,8 @@ import {
 } from "@mui/x-date-pickers";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+import useGetStationsWithID from "../hooks/useGetStationsWithID"
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
@@ -27,6 +28,8 @@ const SetBlock = (props) => {
   const SelectCity = (startOrEnd) => {
     dispatch(modeHandler({ mode: "selectCity", startOrEnd: startOrEnd }));
   };
+
+  const stationsWithID = useGetStationsWithID()
 
   return (
     <div>

@@ -25,10 +25,7 @@ export const mainSlice = createSlice({
             state.selectedCity = action.payload.selectedCity
         },
         setDateTime(state, action){
-            console.log("typeof state.dateTime:",typeof state.dateTime)
-            console.log("typeof dateTimeValue:",typeof action.payload.dateTimeValue)
             state.dateTime = action.payload.dateTimeValue
-            console.log("state.dateTime:",state.dateTime)
         }
     },
 })
