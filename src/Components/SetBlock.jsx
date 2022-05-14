@@ -15,7 +15,7 @@ import { modeHandler, setDateTime } from "../store/mainSlice";
 
 import "./SetBlock.scss";
 
-import axios from "../_axios"
+// import axios from "../_axios"
 
 
 const SetBlock = (props) => {
@@ -108,7 +108,12 @@ const SetBlock = (props) => {
             }
 
             if(isEnd >= 2) return false;
+
+            return true
           })
+
+          const req_url = `DailyTrainTimetable/OD/Inclusive/${startStationID}/to/${endStationID}/${queryDate}?%24&%24format=JSON`
+          console.log(req_url)
 
           // axios.get(`/DailyTrainTimetable/OD/Inclusive/${startStationID}/to/${endStationID}/${queryDate}?%24&%24format=JSON`,{
           //   headers:{
