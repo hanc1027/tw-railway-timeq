@@ -3,7 +3,6 @@ import { Button, Divider, Typography, TextField, Stack } from "@mui/material";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import {
   LocalizationProvider,
-  MobileDateTimePicker,
   DesktopDateTimePicker,
 } from "@mui/x-date-pickers";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
@@ -36,15 +35,6 @@ const SetBlock = (props) => {
 
       <div className="date-selector">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
-          {/* <MobileDateTimePicker
-            label="For mobile"
-            value={dateValue}
-            onChange={(newValue) => {
-              setdateValue(newValue);
-            }}
-            renderInput={(params) => <TextField {...params} />}
-            inputFormat="yyyy/MM/dd hh:mm a"
-          /> */}
           <DesktopDateTimePicker
             value={dateValue}
             onChange={(newValue) => {
