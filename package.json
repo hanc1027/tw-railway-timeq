@@ -2,6 +2,7 @@
   "name": "tw-railway-timeq",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://hanc1027.githu.io/tw-railway-timeq",
   "dependencies": {
     "@emotion/react": "^11.9.0",
     "@emotion/styled": "^11.8.1",
