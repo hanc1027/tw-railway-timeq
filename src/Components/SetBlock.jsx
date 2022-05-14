@@ -20,6 +20,7 @@ const SetBlock = (props) => {
     (state) => state.main.startStation
   );
   const endStation = useSelector((state) => state.main.endStation);
+  const startOrEnd = useSelector((state) => state.main.selectMode.startOrEnd);
 
   const dispatch = useDispatch();
   const SelectCity = (startOrEnd) => {
@@ -37,6 +38,7 @@ const SetBlock = (props) => {
             onClick={() => {
               SelectCity("start");
             }}
+            sx={{backgroundColor:`${startOrEnd==="start" && "rgba(220,218,123,0.6)"}`,borderRadius:3}}
           >
             {startStation.StationName.Zh_tw}
           </Typography>
@@ -55,6 +57,7 @@ const SetBlock = (props) => {
             onClick={() => {
               SelectCity("end");
             }}
+            sx={{backgroundColor:`${startOrEnd==="end" && "rgba(220,218,123,0.6)"}`,borderRadius:3}}
           >
             {endStation.StationName.Zh_tw}
           </Typography>

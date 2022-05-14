@@ -19,7 +19,7 @@ const SelectCity = (props) => {
         {startOrEnd === "end" && "請選擇迄站地區"}
       </Grid>
 
-      <Grid container md={12}>
+      <Grid container>
         {props.stations.map((station, index) => {
           return (
             <Grid
