@@ -4,7 +4,8 @@ const initialState = {
     startStation: "臺北",
     endStation: "高雄",
     selectMode: {mode: "", startOrEnd: "" },
-    selectedCity:""
+    selectedCity:"",
+    dateTime:new Date()
 }
 
 export const mainSlice = createSlice({
@@ -22,10 +23,16 @@ export const mainSlice = createSlice({
         },
         setSelectedCity(state, action) {
             state.selectedCity = action.payload.selectedCity
+        },
+        setDateTime(state, action){
+            console.log("typeof state.dateTime:",typeof state.dateTime)
+            console.log("typeof dateTimeValue:",typeof action.payload.dateTimeValue)
+            state.dateTime = action.payload.dateTimeValue
+            console.log("state.dateTime:",state.dateTime)
         }
     },
 })
 
-export const { modeHandler, setStartStation, setEndStation, setSelectedCity } = mainSlice.actions
+export const { modeHandler, setStartStation, setEndStation, setSelectedCity, setDateTime } = mainSlice.actions
 
 export default mainSlice.reducer

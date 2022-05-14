@@ -10,17 +10,18 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { modeHandler } from "../store/mainSlice";
+import { modeHandler, setDateTime } from "../store/mainSlice";
 
 import "./SetBlock.scss";
 
+
 const SetBlock = (props) => {
-  const [dateValue, setdateValue] = useState(new Date());
   const startStation = useSelector(
     (state) => state.main.startStation
   );
   const endStation = useSelector((state) => state.main.endStation);
   const startOrEnd = useSelector((state) => state.main.selectMode.startOrEnd);
+  const dateTime = useSelector((state) => state.main.dateTime);
 
   const dispatch = useDispatch();
   const SelectCity = (startOrEnd) => {
@@ -38,7 +39,7 @@ const SetBlock = (props) => {
             onClick={() => {
               SelectCity("start");
             }}
-            sx={{backgroundColor:`${startOrEnd==="start" && "rgba(220,218,123,0.6)"}`,borderRadius:3}}
+            sx={{ backgroundColor: `${startOrEnd === "start" && "rgba(220,218,123,0.6)"}`, borderRadius: 3 }}
           >
             {startStation}
           </Typography>
@@ -57,7 +58,7 @@ const SetBlock = (props) => {
             onClick={() => {
               SelectCity("end");
             }}
-            sx={{backgroundColor:`${startOrEnd==="end" && "rgba(220,218,123,0.6)"}`,borderRadius:3}}
+            sx={{ backgroundColor: `${startOrEnd === "end" && "rgba(220,218,123,0.6)"}`, borderRadius: 3 }}
           >
             {endStation}
           </Typography>
@@ -68,9 +69,9 @@ const SetBlock = (props) => {
       <div className="date-selector">
         <LocalizationProvider dateAdapter={AdapterDateFns}>
           <DesktopDateTimePicker
-            value={dateValue}
+            value={dateTime}
             onChange={(newValue) => {
-              setdateValue(newValue);
+              dispatch(setDateTime({ dateTimeValue: newValue }))
             }}
             renderInput={(params) => <TextField {...params} />}
             inputFormat="yyyy/MM/dd hh:mm a"
