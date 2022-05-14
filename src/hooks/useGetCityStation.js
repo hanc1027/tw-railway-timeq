@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-
 import stationsDetail from "../JSON/stations.json"
 
 const cities = ["基隆", "雙北", "桃園", "新竹", "苗栗", "臺中", "彰化", "南投", "雲林", "嘉義", "臺南", "高雄", "屏東", "臺東", "花蓮", "宜蘭"]
@@ -30,7 +28,7 @@ const filterStationsFromCity = (rawStations, city) => {
 
 const useGetCityStation = () => {
     const stations = stationsDetail.Stations
-    const [cityStations, setcityStations] = useState([]);
+    const cityStations = [];
 
     cities.forEach(city => {
         cityStations.push({

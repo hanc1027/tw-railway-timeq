@@ -33,7 +33,7 @@ const initialState = {
         "StationClass": "0",
         "StationURL": "http://www.railway.gov.tw/tra-tip-web/tip/tip00H/tipH41/viewStaInfo/4400"
     },
-    selectMode: {},
+    selectMode: {mode: "", startOrEnd: "start" },
 }
 
 export const mainSlice = createSlice({
