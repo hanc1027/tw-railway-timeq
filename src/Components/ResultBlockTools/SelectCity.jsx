@@ -1,6 +1,6 @@
 const SelectCity = (props)=>{
     return(
-        <div></div>
+        <div>Select City</div>
     )
 }
 

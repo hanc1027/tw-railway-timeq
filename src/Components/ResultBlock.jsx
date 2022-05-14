@@ -1,13 +1,18 @@
-import Box from "@mui/material/Box"
+import Box from "@mui/material/Box";
+import SelectCity from "./ResultBlockTools/SelectCity";
 
-import "./ResultBlock.scss"
+// redux
+import { useSelector } from "react-redux";
 
-const ResultBlock = (props)=>{
-    
-return(
-    <Box sx={{flexGrow:1 , borderRadius: 2}} className="main">
-        
+import "./ResultBlock.scss";
+
+const ResultBlock = (props) => {
+  const selectMode = useSelector((state) => state.main.selectMode);
+
+  return (
+    <Box sx={{ flexGrow: 1, borderRadius: 2 }} className="main">
+      {selectMode === "selectCity" && <SelectCity />}
     </Box>
-)
-}
-export default ResultBlock
+  );
+};
+export default ResultBlock;
