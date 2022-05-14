@@ -45,12 +45,17 @@ const SetBlock = (props) => {
     "StationURL": "http://www.railway.gov.tw/tra-tip-web/tip/tip00H/tipH41/viewStaInfo/4400"
   });
 
+
+  const SelectCity = ()=>{
+
+  }
+
   return (
     <div>
       <div className="from-to-station">
         <div className="start-label">
           <label>起站</label>
-          <Typography variant="h6" className="station-selector">{startStation.StationName.Zh_tw}</Typography>
+          <Typography variant="h6" className="station-selector" onClick={SelectCity()} >{startStation.StationName.Zh_tw}</Typography>
         </div>
 
         <Button className="arrow-btn">
@@ -60,7 +65,7 @@ const SetBlock = (props) => {
 
         <div className="end-label">
           <label>迄站</label>
-          <Typography variant="h6" className="station-selector">{endStation.StationName.Zh_tw}</Typography>
+          <Typography variant="h6" className="station-selector" onClick={SelectCity()} >{endStation.StationName.Zh_tw}</Typography>
         </div>
       </div>
       <Divider />
