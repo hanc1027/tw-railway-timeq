@@ -2,6 +2,8 @@ import Box from "@mui/material/Box";
 import SelectCity from "./ResultBlockTools/SelectCity";
 import StartPage from "./ResultBlockTools/StartPage";
 import SelectStation from "./ResultBlockTools/SelectStation";
+import ShowTimeQuery from "./ResultBlockTools/ShowTimeQuery";
+
 
 // redux
 import { useSelector } from "react-redux";
@@ -19,7 +21,9 @@ const ResultBlock = (props) => {
     <Box sx={{ flexGrow: 1, borderRadius: 2 }} className="main">
        {selectMode.mode === "" && <StartPage/>}
       {selectMode.mode === "selectCity" && <SelectCity stations={cityStations}/>}
-      {selectMode.mode === "selectStation" && <SelectStation stations={cityStations} city={selectedCity}/>}
+      {selectMode.mode === "selectStation" && <SelectStation stations={cityStations} 
+      city={selectedCity}/>}
+      {selectMode.mode === "showTimeQuery" && <ShowTimeQuery/>}
     </Box>
   );
 };

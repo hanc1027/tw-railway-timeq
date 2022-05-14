@@ -93,7 +93,6 @@ const SetBlock = (props) => {
           if(date<10) date = `0${date}`
 
           const queryDate = `${dateTime.getFullYear()}-${month}-${date}`
-          console.log(queryDate)
 
           let startStationID = "", endStationID ="", isEnd = 0;
           
@@ -119,6 +118,8 @@ const SetBlock = (props) => {
           // }).then(result=>{
           //   console.log("Result:",result)
           // })
+
+          dispatch(modeHandler({ mode: "showTimeQuery", startOrEnd: "" }));
         }}>查詢</Button>
       </div>
     </div>
