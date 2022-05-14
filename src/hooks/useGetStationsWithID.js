@@ -10,7 +10,6 @@ const useGetStationsWithID = () => {
         }
     })
    
-    console.log(stationsWithID)
     return stationsWithID;
 }
 

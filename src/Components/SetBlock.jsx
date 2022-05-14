@@ -15,6 +15,8 @@ import { modeHandler, setDateTime } from "../store/mainSlice";
 
 import "./SetBlock.scss";
 
+import axios from "../_axios"
+
 
 const SetBlock = (props) => {
   const startStation = useSelector(
@@ -84,7 +86,40 @@ const SetBlock = (props) => {
       <Divider sx={{ marginTop: "8px" }} />
 
       <div className="query-btn">
-        <Button variant="contained">查詢</Button>
+        <Button variant="contained" onClick={()=>{
+          let month = dateTime.getMonth()+1
+          if(month<10) month = `0${month}`
+          let date = dateTime.getDate()
+          if(date<10) date = `0${date}`
+
+          const queryDate = `${dateTime.getFullYear()}-${month}-${date}`
+          console.log(queryDate)
+
+          let startStationID = "", endStationID ="", isEnd = 0;
+          
+          stationsWithID.every(item=>{
+            if(item.name ===  startStation){
+              startStationID = item.id 
+              isEnd++
+            }
+
+            if(item.name ===  endStation){
+              endStationID = item.id 
+              isEnd++
+            }
+
+            if(isEnd >= 2) return false;
+          })
+
+          // axios.get(`/DailyTrainTimetable/OD/Inclusive/${startStationID}/to/${endStationID}/${queryDate}?%24&%24format=JSON`,{
+          //   headers:{
+          //     'accept': 'application/json',
+          //     'Authorization': 'hmac username="FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF"'
+          //   }
+          // }).then(result=>{
+          //   console.log("Result:",result)
+          // })
+        }}>查詢</Button>
       </div>
     </div>
   );
