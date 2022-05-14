@@ -40,6 +40,5 @@ jobs:
         with:
           target_branch: gh-pages
           build_dir: build
-          fqdn: railway-lookup.tw
         env:
           GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
