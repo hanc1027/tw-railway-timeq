@@ -40,7 +40,7 @@ const SetBlock = (props) => {
             }}
             sx={{backgroundColor:`${startOrEnd==="start" && "rgba(220,218,123,0.6)"}`,borderRadius:3}}
           >
-            {startStation.StationName.Zh_tw}
+            {startStation}
           </Typography>
         </div>
 
@@ -59,7 +59,7 @@ const SetBlock = (props) => {
             }}
             sx={{backgroundColor:`${startOrEnd==="end" && "rgba(220,218,123,0.6)"}`,borderRadius:3}}
           >
-            {endStation.StationName.Zh_tw}
+            {endStation}
           </Typography>
         </div>
       </div>

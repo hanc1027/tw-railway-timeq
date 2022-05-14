@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import SelectCity from "./ResultBlockTools/SelectCity";
 import StartPage from "./ResultBlockTools/StartPage";
-import SelectStation from "./ResultBlockTools/selectStation";
+import SelectStation from "./ResultBlockTools/SelectStation";
 
 // redux
 import { useSelector } from "react-redux";
