@@ -1,38 +1,49 @@
-name: Build and Deploy
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: Node.js CI
+
 on:
   push:
-    branches:
-      - main
-jobs:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
-  install-and-test:
+jobs:
+  build:
+
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
-        node-version: [8.x, 10.x, 12.x]
+        node-version: [12.x, 14.x, 16.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
     steps:
-    - uses: actions/checkout@master
+    - uses: actions/checkout@v3
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@master
+      uses: actions/setup-node@v3
       with:
         node-version: ${{ matrix.node-version }}
-    - name: Install and Test
+        cache: 'npm'
+    
+    - name: Install dependencies
+      run: npm install
+    
+    - name: Run the tests
+      run: npm test
+    
+    - name: Build
+      run: npm run build
+
+    - name: Deploy
       run: |
-        npm
-        npm run test
+        git config --global user.name $user_name
+        git config --global user.email $user_email
+        git remote set-url origin @github.com/${repository">https://${github_token}@github.com/${repository}
+        npm run deploy
       env:
-        CI: true
-
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout
-      uses: actions/checkout@master
-
-    - name: Build and Deploy
-      uses: JamesIves/github-pages-deploy-action@master
-      env:
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        BRANCH: gh-pages
-        FOLDER: build
-        BUILD_SCRIPT: cp .env.example .env.local && npm && npm run build
+        user_name: 'github-actions[bot]'
+        user_email: 'github-actions[bot]@users.noreply.github.com'
+        github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+        repository: ${{ github.repository }}
