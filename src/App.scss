@@ -1,12 +1,17 @@
 .desktop-content {
   display: flex;
   flex-direction: row;
-  padding: 3em;
+  padding: 2em;
 }
 
-.mobile-content{
+.mobile-content {
   display: flex;
   flex-direction: row;
   justify-content: center;
   padding: 1em;
+}
+
+.ptx-logo {
+  float: right;
+  margin-right: 1em;
 }
