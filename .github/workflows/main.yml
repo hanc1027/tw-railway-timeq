@@ -1,49 +1,78 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+# # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# # For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
 
-name: CI/CD
+# name: CI/CD
 
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+#     branches: [main]
+
+# jobs:
+#   build:
+#     runs-on: ubuntu-latest
+
+#     strategy:
+#       matrix:
+#         node-version: [14.x]
+#         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+
+#     steps:
+#       - uses: actions/checkout@v3
+#       - name: Use Node.js ${{ matrix.node-version }}
+#         uses: actions/setup-node@v3
+#         with:
+#           node-version: ${{ matrix.node-version }}
+#           cache: "npm"
+
+#       - name: Install dependencies
+#         run: npm install
+
+#       # - name: Run the tests
+#       #   run: npm test
+
+#       - name: Build
+#         run: npm run build
+
+#       - name: Deploy
+#         run: |
+#           git config --global user.name $user_name
+#           git config --global user.email $user_email
+#           git remote set-url origin @github.com/${repository">https://${github_token}@github.com/${repository}
+#           npm run deploy
+#         env:
+#           user_name: "github-actions[bot]"
+#           user_email: "github-actions[bot]@users.noreply.github.com"
+#           github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
+#           repository: ${{ github.repository }}
+#           REACT_APP_FLAVOR: "prod"
+
+
+name: Build and Deploy
 on:
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
+    branches:
+      - main
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [14.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
-
     steps:
-      - uses: actions/checkout@v3
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v3
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
         with:
-          node-version: ${{ matrix.node-version }}
-          cache: "npm"
+          persist-credentials: false
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Run the tests
-        run: npm test --if-present
-
-      - name: Build
-        run: npm run build
-
-      - name: Deploy
+      - name: Install and Build 🔧
         run: |
-          git config --global user.name $user_name
-          git config --global user.email $user_email
-          git remote set-url origin @github.com/${repository">https://${github_token}@github.com/${repository}
-          npm run deploy
+          npm install
+          npm run build
+
+      - name: Deploy 🚀
+        uses: crazy-max/ghaction-github-pages@v2
+        with:
+          target_branch: gh-pages
+          build_dir: build
+          fqdn: tw-railway.timelook.tw
         env:
-          user_name: "github-actions[bot]"
-          user_email: "github-actions[bot]@users.noreply.github.com"
-          github_token: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
-          repository: ${{ github.repository }}
-          REACT_APP_FLAVOR: "prod"
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_ACCESS_TOKEN }}
