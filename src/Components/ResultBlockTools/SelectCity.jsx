@@ -3,11 +3,16 @@ import Button from "@mui/material/Button";
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { modeHandler } from "../../store/mainSlice";
+import { modeHandler,setSelectedCity } from "../../store/mainSlice";
 
 const SelectCity = (props) => {
   const startOrEnd = useSelector((state) => state.main.selectMode.startOrEnd);
   const dispatch = useDispatch();
+
+  const selectedCityHandler = (cityName)=>{
+    dispatch(setSelectedCity({selectedCity:cityName}))
+    dispatch(modeHandler({mode: "selectStation", startOrEnd: startOrEnd }))
+  }
 
   return (
     <Grid container height="100%">
@@ -34,7 +39,9 @@ const SelectCity = (props) => {
               justifyContent="center"
               display="flex"
             >
-              <Button>{station.city}</Button>
+              <Button onClick={()=>{
+                selectedCityHandler(station.city)
+              }}>{station.city}</Button>
             </Grid>
           );
         })}

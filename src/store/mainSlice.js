@@ -34,6 +34,7 @@ const initialState = {
         "StationURL": "http://www.railway.gov.tw/tra-tip-web/tip/tip00H/tipH41/viewStaInfo/4400"
     },
     selectMode: {mode: "", startOrEnd: "" },
+    selectedCity:""
 }
 
 export const mainSlice = createSlice({
@@ -44,15 +45,18 @@ export const mainSlice = createSlice({
             state.selectMode = action.payload
         },
         setStartStation(state, action) {
-            state.startStation = action.payload
+            state.startStation = action.payload.startStation
 
         },
         setEndStation(state, action) {
-            state.endStation = action.payload
+            state.endStation = action.payload.endStation
+        },
+        setSelectedCity(state, action) {
+            state.selectedCity = action.payload.selectedCity
         }
     },
 })
 
-export const { modeHandler, setStartStation, setEndStation } = mainSlice.actions
+export const { modeHandler, setStartStation, setEndStation, setSelectedCity } = mainSlice.actions
 
 export default mainSlice.reducer
