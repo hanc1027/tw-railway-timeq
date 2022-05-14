@@ -33,7 +33,7 @@ const initialState = {
         "StationClass": "0",
         "StationURL": "http://www.railway.gov.tw/tra-tip-web/tip/tip00H/tipH41/viewStaInfo/4400"
     },
-    selectMode: null
+    selectMode: {},
 }
 
 export const mainSlice = createSlice({
@@ -41,7 +41,7 @@ export const mainSlice = createSlice({
     initialState,
     reducers: {
         modeHandler(state, action) {
-            state.selectMode = action.payload.mode
+            state.selectMode = action.payload
         },
         setStartStation(state, action) {
             state.startStation = action.payload

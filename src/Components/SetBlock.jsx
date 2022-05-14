@@ -52,8 +52,8 @@ const SetBlock = (props) => {
   });
 
   const dispatch = useDispatch();
-  const SelectCity = () => {
-    dispatch(modeHandler({ mode: "selectCity" }));
+  const SelectCity = (startOrEnd) => {
+    dispatch(modeHandler({ mode: "selectCity", startOrEnd:startOrEnd }));
   };
 
   return (
@@ -64,7 +64,7 @@ const SetBlock = (props) => {
           <Typography
             variant="h6"
             className="station-selector"
-            onClick={SelectCity}
+            onClick={()=>{SelectCity("start")}}
           >
             {startStation.StationName.Zh_tw}
           </Typography>
@@ -80,7 +80,7 @@ const SetBlock = (props) => {
           <Typography
             variant="h6"
             className="station-selector"
-            onClick={SelectCity}
+            onClick={()=>{SelectCity("end")}}
           >
             {endStation.StationName.Zh_tw}
           </Typography>
