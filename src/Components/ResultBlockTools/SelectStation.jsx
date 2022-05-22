@@ -16,13 +16,13 @@ const SelectStation = (props) => {
   const startOrEnd = useSelector((state) => state.main.selectMode.startOrEnd);
   const dispatch = useDispatch();
 
-  const setStationHandler = (stationName)=>{
-    if(startOrEnd === "start"){
-      dispatch(setStartStation({startStation:stationName}))
-    }else{
-      dispatch(setEndStation({endStation:stationName}))
+  const setStationHandler = (stationName) => {
+    if (startOrEnd === "start") {
+      dispatch(setStartStation({ startStation: stationName }))
+    } else {
+      dispatch(setEndStation({ endStation: stationName }))
     }
-    dispatch(modeHandler({mode: "", startOrEnd: "" }))
+    dispatch(modeHandler({ mode: "", startOrEnd: "" }))
   }
 
 
@@ -50,9 +50,9 @@ const SelectStation = (props) => {
             justifyContent="center"
             display="flex"
           >
-            <Button onClick={()=>{
+            <Button onClick={() => {
               setStationHandler(station)
-            }}>{station}</Button>
+            }} sx={{ fontSize: "inherit" }} >{station}</Button>
           </Grid>
         );
       })}
@@ -68,7 +68,7 @@ const SelectStation = (props) => {
     >
       <Button color="error" onClick={() => {
         dispatch(modeHandler({ mode: "selectCity", startOrEnd: startOrEnd }));
-      }}>取消</Button>
+      }} sx={{ fontSize: "inherit" }} >取消</Button>
     </Grid>
   </Grid>);
 };

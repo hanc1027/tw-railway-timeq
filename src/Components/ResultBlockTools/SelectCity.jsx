@@ -41,7 +41,7 @@ const SelectCity = (props) => {
             >
               <Button onClick={()=>{
                 selectedCityHandler(station.city)
-              }}>{station.city}</Button>
+              }}  sx={{fontSize:"inherit"}} >{station.city}</Button>
             </Grid>
           );
         })}
@@ -57,7 +57,7 @@ const SelectCity = (props) => {
       >
         <Button color="error" onClick={()=>{
           dispatch(modeHandler({ mode: "", startOrEnd: ""}));
-        }}>取消</Button>
+        }}  sx={{fontSize:"inherit"}} >取消</Button>
       </Grid>
     </Grid>
   );

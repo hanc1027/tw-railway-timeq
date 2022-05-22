@@ -1,0 +1,25 @@
+.container {
+    display: flex;
+    padding: 10px;
+    border-bottom: 2px solid rgba($color: gray, $alpha: 0.2);
+    border-radius: 10px;
+}
+
+.car-type {
+    border-radius: 3px;
+    width: 5vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px double;
+}
+
+.content {
+    display: flex;
+    align-items: center;
+    padding: 0.5em 0.5em 0;
+}
+.content-inner{
+    display: inherit;
+    align-items: inherit;
+}
