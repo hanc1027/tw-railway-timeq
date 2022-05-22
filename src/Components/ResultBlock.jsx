@@ -3,6 +3,7 @@ import SelectCity from "./ResultBlockTools/SelectCity";
 import StartPage from "./ResultBlockTools/StartPage";
 import SelectStation from "./ResultBlockTools/SelectStation";
 import ShowTimeQuery from "./ResultBlockTools/ShowTimeQuery";
+import NoData from "./ResultBlockTools/NoData";
 
 
 // redux
@@ -24,6 +25,7 @@ const ResultBlock = (props) => {
       {selectMode.mode === "selectStation" && <SelectStation stations={cityStations} 
       city={selectedCity}/>}
       {selectMode.mode === "showTimeQuery" && <ShowTimeQuery/>}
+      {selectMode.mode === "notFound" && <NoData/>}
     </Box>
   );
 };

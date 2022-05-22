@@ -144,7 +144,12 @@ const SetBlock = (props) => {
           //*
           axios(time_config)
             .then(function (response) {
-              dispatch(setTimeQueryResult({ result: response.data }))
+              if(response.data.TrainTimetables.length === 0){
+                dispatch(modeHandler({ mode: "notFound", startOrEnd: "" }));
+                return false
+              }else{
+                dispatch(setTimeQueryResult({ result: response.data }))
+              }
 
               // Get ticket fee from start station to end station
               var ticket_config = {
