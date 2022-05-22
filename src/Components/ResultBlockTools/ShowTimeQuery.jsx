@@ -30,7 +30,7 @@ const ShowTimeQuery = (props) => {
       return (
         <TransList
           key={station + index}
-          trainType={station.TrainInfo.TrainTypeName.Zh_tw.slice(0, 2)}
+          trainType={station.TrainInfo.TrainTypeName.Zh_tw}
           trainTypeNo={station.TrainInfo.TrainTypeCode}
           trainNo={station.TrainInfo.TrainNo}
           goTo={station.TrainInfo.TripHeadSign}

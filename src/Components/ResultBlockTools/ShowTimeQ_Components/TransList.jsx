@@ -6,6 +6,7 @@ import "./TransList.scss"
 
 const colorCodeOfCar = {
   "區間": { bgColor: "#0000cc", textColor: "white", borderColor: "rgb(243, 226, 127)" },
+  "區間快": { bgColor: "#3c8efa", textColor: "white", borderColor: "rgb(243, 226, 127)" },
   "自強": { bgColor: "#ff8000", textColor: "white", borderColor: "rgb(243, 226, 127)" },
   "莒光": { bgColor: "#ffcc00", textColor: "rgb(10, 7, 43)", borderColor: "rgb(127, 175, 243)" },
   "普悠瑪": { bgColor: "#ff0000", textColor: "white", borderColor: "rgb(243, 226, 127)" },
@@ -14,7 +15,16 @@ const colorCodeOfCar = {
 
 const TransList = (props) => {
 
-  const trainType = props.trainType
+  let trainType = props.trainType
+
+  if (trainType.length >= 3) {
+    trainType = trainType.slice(0, 3)
+    if (trainType !== "區間快" && trainType !== "普悠瑪" && trainType !== "太魯閣") {
+      trainType = trainType.slice(0, 2)
+    }
+  } else {
+    trainType = trainType.slice(0, 2)
+  }
   const trainNo = props.trainNo
   const goTo = props.goTo
   const arrivalTimeOfStartStation = props.arrivalTimeOfStartStation
