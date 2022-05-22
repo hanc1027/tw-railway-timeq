@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/tw-railway-timeq/static/css/main.5e647b54.css",
+    "main.js": "/tw-railway-timeq/static/js/main.a97a724c.js",
+    "static/js/787.61d23b1c.chunk.js": "/tw-railway-timeq/static/js/787.61d23b1c.chunk.js",
+    "static/media/PTX_logo.png": "/tw-railway-timeq/static/media/PTX_logo.122cc189223e8f06dfea.png",
+    "index.html": "/tw-railway-timeq/index.html",
+    "main.5e647b54.css.map": "/tw-railway-timeq/static/css/main.5e647b54.css.map",
+    "main.a97a724c.js.map": "/tw-railway-timeq/static/js/main.a97a724c.js.map",
+    "787.61d23b1c.chunk.js.map": "/tw-railway-timeq/static/js/787.61d23b1c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5e647b54.css",
+    "static/js/main.a97a724c.js"
+  ]
+}
