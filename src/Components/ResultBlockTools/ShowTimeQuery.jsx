@@ -1,8 +1,10 @@
-import Grid from "@mui/material/Grid"
-import fakeData from "../../JSON/FakeGetData.json"
 
-const trainTimetables = fakeData.TrainTimetables
+import Grid from "@mui/material/Grid"
+
+import { useSelector } from "react-redux"
+
 const ShowTimeQuery = (props) =>{
+  const trainTimetables = useSelector(state=> state.main.queryResult)
 
     return (<Grid container height="100%">
    

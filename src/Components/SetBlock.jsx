@@ -11,11 +11,12 @@ import useGetStationsWithID from "../hooks/useGetStationsWithID"
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { modeHandler, setDateTime } from "../store/mainSlice";
+import { modeHandler, setDateTime, setQueryResult } from "../store/mainSlice";
 
 import "./SetBlock.scss";
 
-// import axios from "../_axios"
+import CryptoJS from 'crypto-js';
+import axios from "../_axios"
 
 
 const SetBlock = (props) => {
@@ -30,6 +31,21 @@ const SetBlock = (props) => {
   const SelectCity = (startOrEnd) => {
     dispatch(modeHandler({ mode: "selectCity", startOrEnd: startOrEnd }));
   };
+
+  const generateAuthorization = () => {
+
+    var AppKey = process.env.REACT_APP_APP_Key
+    var AppID = process.env.REACT_APP_APP_ID
+
+    var GMTString = new Date().toGMTString();
+    var hmac = CryptoJS.algo.HMAC.create(CryptoJS.algo.SHA1, AppKey);
+    hmac.update('x-date: ' + GMTString);
+    var hash = hmac.finalize();
+    var hash64 = hash.toString(CryptoJS.enc.Base64);
+    var Authorization = `hmac username="${AppID}", algorithm="hmac-sha1", headers="x-date", signature="${hash64}"`;
+
+    return { Authorization, GMTString }
+  }
 
   const stationsWithID = useGetStationsWithID()
 
@@ -86,45 +102,58 @@ const SetBlock = (props) => {
       <Divider sx={{ marginTop: "8px" }} />
 
       <div className="query-btn">
-        <Button variant="contained" onClick={()=>{
-          let month = dateTime.getMonth()+1
-          if(month<10) month = `0${month}`
+        <Button variant="contained" onClick={() => {
+          let month = dateTime.getMonth() + 1
+          if (month < 10) month = `0${month}`
           let date = dateTime.getDate()
-          if(date<10) date = `0${date}`
+          if (date < 10) date = `0${date}`
 
           const queryDate = `${dateTime.getFullYear()}-${month}-${date}`
 
-          let startStationID = "", endStationID ="", isEnd = 0;
-          
-          stationsWithID.every(item=>{
-            if(item.name ===  startStation){
-              startStationID = item.id 
+          let startStationID = "", endStationID = "", isEnd = 0;
+
+          stationsWithID.every(item => {
+            if (item.name === startStation) {
+              startStationID = item.id
               isEnd++
             }
 
-            if(item.name ===  endStation){
-              endStationID = item.id 
+            if (item.name === endStation) {
+              endStationID = item.id
               isEnd++
             }
 
-            if(isEnd >= 2) return false;
+            if (isEnd >= 2) return false;
 
             return true
           })
 
           const req_url = `DailyTrainTimetable/OD/Inclusive/${startStationID}/to/${endStationID}/${queryDate}?%24&%24format=JSON`
-          console.log(req_url)
+          console.log("startStationID:", startStationID)
+          console.log("endStationID:", endStationID)
 
-          // axios.get(`/DailyTrainTimetable/OD/Inclusive/${startStationID}/to/${endStationID}/${queryDate}?%24&%24format=JSON`,{
-          //   headers:{
-          //     'accept': 'application/json',
-          //     'Authorization': 'hmac username="FFFFFFFF-FFFF-FFFF-FFFF-FFFFFFFFFFFF"'
-          //   }
-          // }).then(result=>{
-          //   console.log("Result:",result)
-          // })
+          var Authorization, GMTString = generateAuthorization()
 
-          dispatch(modeHandler({ mode: "showTimeQuery", startOrEnd: "" }));
+
+          var config = {
+            method: 'get',
+            url: `/DailyTrainTimetable/OD/Inclusive/${startStationID}/to/${endStationID}/${queryDate}?%24&%24format=JSON`,
+            headers: {
+              'Authorization': Authorization,
+              'x-date': GMTString
+            }
+          };
+
+          axios(config)
+            .then(function (response) {
+              console.log("Success:", response.data.TrainTimetables)
+              dispatch(setQueryResult({ result: response.data.TrainTimetables }))
+              dispatch(modeHandler({ mode: "showTimeQuery", startOrEnd: "" }));
+            })
+            .catch(function (error) {
+              console.log(error);
+            });
+
         }}>查詢</Button>
       </div>
     </div>
