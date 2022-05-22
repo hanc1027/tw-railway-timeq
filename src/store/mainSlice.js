@@ -6,7 +6,8 @@ const initialState = {
     selectMode: {mode: "", startOrEnd: "" },
     selectedCity:"",
     dateTime:new Date(),
-    queryResult: null,
+    timeQueryResult: null,
+    ticketQueryResult: null,
 }
 
 export const mainSlice = createSlice({
@@ -28,12 +29,15 @@ export const mainSlice = createSlice({
         setDateTime(state, action){
             state.dateTime = action.payload.dateTimeValue
         },
-        setQueryResult(state, action){
-            state.queryResult = action.payload.result
+        setTimeQueryResult(state, action){
+            state.timeQueryResult = action.payload.result
+        },
+        setTicketQueryResult(state, action){
+            state.ticketQueryResult = action.payload.ticket
         }
     },
 })
 
-export const { modeHandler, setStartStation, setEndStation, setSelectedCity, setDateTime, setQueryResult } = mainSlice.actions
+export const { modeHandler, setStartStation, setEndStation, setSelectedCity, setDateTime, setTimeQueryResult, setTicketQueryResult } = mainSlice.actions
 
 export default mainSlice.reducer

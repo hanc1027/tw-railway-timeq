@@ -11,7 +11,7 @@ import useGetStationsWithID from "../hooks/useGetStationsWithID"
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { modeHandler, setDateTime, setQueryResult } from "../store/mainSlice";
+import { modeHandler, setDateTime, setTimeQueryResult, setTicketQueryResult } from "../store/mainSlice";
 
 import "./SetBlock.scss";
 
@@ -130,7 +130,8 @@ const SetBlock = (props) => {
 
           var Authorization, GMTString = generateAuthorization()
 
-          var config = {
+          // Get time from start station to end station
+          var time_config = {
             method: 'get',
             url: `/DailyTrainTimetable/OD/Inclusive/${startStationID}/to/${endStationID}/${queryDate}?%24&%24format=JSON`,
             headers: {
@@ -140,18 +141,35 @@ const SetBlock = (props) => {
           };
 
           // TODO: Will remove comment
-          /*
-          axios(config)
+          //*
+          axios(time_config)
             .then(function (response) {
-              dispatch(setQueryResult({ result: response.data }))
-              dispatch(modeHandler({ mode: "showTimeQuery", startOrEnd: "" }));
+              dispatch(setTimeQueryResult({ result: response.data }))
+
+              // Get ticket fee from start station to end station
+              var ticket_config = {
+                method: 'get',
+                url: `/ODFare/${startStationID}/to/${endStationID}?%24format=JSON`,
+                headers: {
+                  'Authorization': Authorization,
+                  'x-date': GMTString
+                }
+              };
+              axios(ticket_config)
+                .then(function (response) {
+                  dispatch(setTicketQueryResult({ ticket: response.data }))
+                  dispatch(modeHandler({ mode: "showTimeQuery", startOrEnd: "" }));
+                })
+                .catch(function (error) {
+                  console.log(error);
+                });
+
             })
             .catch(function (error) {
               console.log(error);
             });
           //*/
 
-          dispatch(modeHandler({ mode: "showTimeQuery", startOrEnd: "" }));
 
         }}>查詢</Button>
       </div>

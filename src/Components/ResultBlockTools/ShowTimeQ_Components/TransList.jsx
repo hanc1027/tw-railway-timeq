@@ -19,6 +19,7 @@ const TransList = (props) => {
   const goTo = props.goTo
   const arrivalTimeOfStartStation = props.arrivalTimeOfStartStation
   const arrivalTimeOfEndStation = props.arrivalTimeOfEndStation
+  const ticketResult = props.ticketResult
 
 
   return (<Grid
@@ -27,8 +28,8 @@ const TransList = (props) => {
     xs={12}
     className="container"
   >
-    <Grid item container  sm={5} md={4} lg={3}>
-      <Grid item xs={4} className="car-type" sx={{ backgroundColor: colorCodeOfCar[trainType].bgColor, color: colorCodeOfCar[trainType].textColor, borderColor: colorCodeOfCar[trainType].borderColor }}>{trainType}
+    <Grid item container sm={5} md={4} lg={3}>
+      <Grid item xs={4} className="train-type" sx={{ backgroundColor: colorCodeOfCar[trainType].bgColor, color: colorCodeOfCar[trainType].textColor, borderColor: colorCodeOfCar[trainType].borderColor }}>{trainType}
       </Grid>
       <Grid item xs={1} />
       <Grid item xs={7}>{trainNo} 車次</Grid>
@@ -36,10 +37,14 @@ const TransList = (props) => {
 
     <Grid item xs={12} className="content">
       <Grid item sm={5} md={4} lg={3} className="content-inner">
-        {arrivalTimeOfStartStation} <DoubleArrowIcon sx={{ color: "#BB3D00", margin:"0px 5px" }} /> {arrivalTimeOfEndStation}
+        {arrivalTimeOfStartStation} <DoubleArrowIcon sx={{ color: "#BB3D00", margin: "0px 5px" }} /> {arrivalTimeOfEndStation}
       </Grid>
       <Grid item sm={4} md={3} lg={2} className="content-inner">
         <DirectionsTransitFilledTwoToneIcon sx={{ color: colorCodeOfCar[trainType].bgColor }} /> {goTo}
+      </Grid>
+      <Grid item sm={3} md={2} lg={1} className="content-inner">
+        {/* TODO: Need to revise the price, it is not correct */}
+        ${ticketResult[0].Price}
       </Grid>
     </Grid>
   </Grid>)
