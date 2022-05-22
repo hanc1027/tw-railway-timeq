@@ -15,8 +15,9 @@ const ShowTimeQuery = (props) => {
   const ticketResult = useSelector(state => state.main.ticketQueryResult.ODFares)
 
   const getTicketFee = (trainTypeNo) => {
+
     for (let index = 0; index < ticketResult.length; index++) {
-      if (ticketResult[index].TrainType === Number(trainTypeNo)) {
+      if (ticketResult[index].TrainType === Number(trainTypeNo) && ticketResult[index].Direction === 1) {
         return ticketResult[index].Fares
       }
     }
