@@ -11,7 +11,7 @@ import useGetStationsWithID from "../hooks/useGetStationsWithID"
 
 // redux
 import { useSelector, useDispatch } from "react-redux";
-import { modeHandler, setDateTime, setTimeQueryResult, setTicketQueryResult } from "../store/mainSlice";
+import { modeHandler, setDateTime, setTimeQueryResult, setTicketQueryResult, setStartStation, setEndStation } from "../store/mainSlice";
 
 import "./SetBlock.scss";
 
@@ -66,7 +66,11 @@ const SetBlock = (props) => {
           </Typography>
         </div>
 
-        <Button className="arrow-btn">
+        <Button className="arrow-btn" onClick={() => {
+          let tmp = startStation
+          dispatch(setStartStation({ startStation: endStation }))
+          dispatch(setEndStation({ endStation: tmp }))
+        }}>
           <ArrowBackIosNewIcon fontSize="small" />
           <ArrowForwardIosIcon fontSize="small" />
         </Button>
@@ -144,10 +148,10 @@ const SetBlock = (props) => {
           //*
           axios(time_config)
             .then(function (response) {
-              if(response.data.TrainTimetables.length === 0){
+              if (response.data.TrainTimetables.length === 0) {
                 dispatch(modeHandler({ mode: "notFound", startOrEnd: "" }));
                 return false
-              }else{
+              } else {
                 dispatch(setTimeQueryResult({ result: response.data }))
               }
 
