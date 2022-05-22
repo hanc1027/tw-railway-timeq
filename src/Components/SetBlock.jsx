@@ -128,12 +128,7 @@ const SetBlock = (props) => {
             return true
           })
 
-          const req_url = `DailyTrainTimetable/OD/Inclusive/${startStationID}/to/${endStationID}/${queryDate}?%24&%24format=JSON`
-          console.log("startStationID:", startStationID)
-          console.log("endStationID:", endStationID)
-
           var Authorization, GMTString = generateAuthorization()
-
 
           var config = {
             method: 'get',
@@ -144,15 +139,19 @@ const SetBlock = (props) => {
             }
           };
 
+          // TODO: Will remove comment
+          /*
           axios(config)
             .then(function (response) {
-              console.log("Success:", response.data.TrainTimetables)
-              dispatch(setQueryResult({ result: response.data.TrainTimetables }))
+              dispatch(setQueryResult({ result: response.data }))
               dispatch(modeHandler({ mode: "showTimeQuery", startOrEnd: "" }));
             })
             .catch(function (error) {
               console.log(error);
             });
+          //*/
+
+          dispatch(modeHandler({ mode: "showTimeQuery", startOrEnd: "" }));
 
         }}>查詢</Button>
       </div>

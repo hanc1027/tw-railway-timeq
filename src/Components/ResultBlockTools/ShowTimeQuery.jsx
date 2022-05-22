@@ -3,8 +3,14 @@ import Grid from "@mui/material/Grid"
 
 import { useSelector } from "react-redux"
 
+import fake_data from "../../JSON/Fake_transition_data.json"
+
 const ShowTimeQuery = (props) =>{
-  const trainTimetables = useSelector(state=> state.main.queryResult)
+
+  const srcUpdateTime = fake_data.SrcUpdateTime
+  const trainTimetables = fake_data.TrainTimetables
+  // const srcUpdateTime = useSelector(state=> state.main.queryResult.SrcUpdateTime)
+  // const trainTimetables = useSelector(state=> state.main.queryResult.TrainTimetables)
 
     return (<Grid container height="100%">
    
